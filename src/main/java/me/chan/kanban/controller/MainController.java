@@ -25,7 +25,7 @@ public class MainController {
         return "index";
     }
     @GetMapping("/boards")
-    public String boards(Model model,@AuthenticationPrincipal User user)
+    public String boards(Model model, User user)
     {
         model.addAttribute("user", user);
         return "boardlist";

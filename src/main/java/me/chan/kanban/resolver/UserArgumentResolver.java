@@ -3,7 +3,6 @@ package me.chan.kanban.resolver;
 import me.chan.kanban.domain.User;
 import me.chan.kanban.repository.UserRepository;
 import org.springframework.core.MethodParameter;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.stereotype.Component;
@@ -28,6 +27,11 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
     }
 
     @Override
+    public boolean supportsParameter(MethodParameter methodParameter) {
+        return methodParameter.getParameterType().equals(User.class);
+    }
+
+    @Override
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer,
                                   NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
         HttpSession session = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes())
@@ -35,23 +39,17 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
         User user = (User) session.getAttribute("user");
         return getUser(user, session);
     }
+
     private User getUser(User user, HttpSession session) {
         if(user == null) {
             try {
                 OAuth2AuthenticationToken authentication =
                         (OAuth2AuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
-
                 Map<String, Object> map = authentication.getPrincipal().getAttributes();
-
-                User convertUser = convertUser(authentication.getAuthorizedClientRegistrationId(), map);
-
+                User convertUser = getModernUser(map);
                 user = userRepository.findByMail(convertUser.getMail());
-
                 if(user == null) { user = userRepository.save(convertUser); }
-
                 session.setAttribute("user", user);
-
-
             } catch (ClassCastException e) {
                 return user;
             }
@@ -59,12 +57,7 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
         return user;
     }
 
-    private User convertUser(String authority, Map<String, Object> map) {
-        if("GOOGLE".equals(authority)) return getModernUser("GOOGLE", map);
-        return null;
-    }
-
-    private User getModernUser(String social, Map<String, Object> map) {
+    private User getModernUser(Map<String, Object> map) {
         return User.builder()
                 .nickName(String.valueOf(map.get("name")))
                 .mail(String.valueOf(map.get("email")))
@@ -72,6 +65,7 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
                 .createdDate(LocalDateTime.now())
                 .build();
     }
+
 
 
 }

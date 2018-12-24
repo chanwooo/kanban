@@ -29,9 +29,6 @@ public class User {
     private String password;
 
     @Getter
-    private String social;
-
-    @Getter
     private String principal;
 
     @Getter
@@ -41,11 +38,10 @@ public class User {
     private LocalDateTime updatedDate;
 
     @Builder
-    public User(String mail, String nickName, String password, String social, String principal, LocalDateTime createdDate, LocalDateTime updatedDate) {
+    public User(String mail, String nickName, String password, String principal, LocalDateTime createdDate, LocalDateTime updatedDate) {
         this.mail = mail;
         this.nickName = nickName;
         this.password = password;
-        this.social = social;
         this.principal = principal;
         this.createdDate = createdDate;
         this.updatedDate = updatedDate;
@@ -57,5 +53,11 @@ public class User {
 
     public void setCreatedDateNow(LocalDateTime createdDate) {
         this.createdDate = LocalDateTime.now();
+    }
+
+    @Override
+    public String toString() {
+
+        return super.toString()+"\n"+idx+" "+mail+" "+nickName+" "+password+" "+principal+" "+createdDate+" "+updatedDate;
     }
 }
