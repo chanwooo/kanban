@@ -1,6 +1,6 @@
 package me.chan.kanban.controller;
 
-import me.chan.kanban.domain.User;
+import me.chan.kanban.domain.Member;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -13,7 +13,7 @@ public class LoginController {
     }
 
     @GetMapping("/loginSuccess")
-    public String loginSuccess(User user) {
+    public String loginSuccess(Member user) {
         return "redirect:/boards";
     }
 }

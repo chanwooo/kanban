@@ -1,7 +1,7 @@
 package me.chan.kanban;
 
-import me.chan.kanban.domain.User;
-import me.chan.kanban.repository.UserRepository;
+import me.chan.kanban.domain.Member;
+import me.chan.kanban.repository.MemberRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,9 +17,9 @@ public class BootApplication {
     }
 
     @Bean
-    public CommandLineRunner runner(UserRepository userRepository) throws Exception {
+    public CommandLineRunner runner(MemberRepository memberRepository) throws Exception {
         return (args) -> {
-            User user = userRepository.save(User.builder()
+            Member user = memberRepository.save(Member.builder()
             .mail("chanwookim@me.com")
             .password("cksdn1")
             .nickName("찬우")

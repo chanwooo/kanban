@@ -1,9 +1,8 @@
 package me.chan.kanban.controller;
 
-import me.chan.kanban.domain.User;
-import me.chan.kanban.repository.UserRepository;
+import me.chan.kanban.domain.Member;
+import me.chan.kanban.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class MainController {
     @Autowired
-    UserRepository userRepository;
+    MemberRepository userRepository;
 
     @GetMapping({"","/"})
     public String hello()
@@ -25,7 +24,7 @@ public class MainController {
         return "index";
     }
     @GetMapping("/boards")
-    public String boards(Model model, User user)
+    public String boards(Model model, Member user)
     {
         model.addAttribute("user", user);
         return "boardlist";

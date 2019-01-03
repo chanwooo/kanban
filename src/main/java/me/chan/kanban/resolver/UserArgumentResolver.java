@@ -1,7 +1,7 @@
 package me.chan.kanban.resolver;
 
-import me.chan.kanban.domain.User;
-import me.chan.kanban.repository.UserRepository;
+import me.chan.kanban.domain.Member;
+import me.chan.kanban.repository.MemberRepository;
 import org.springframework.core.MethodParameter;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
@@ -20,15 +20,15 @@ import java.util.Map;
 
 @Component
 public class UserArgumentResolver implements HandlerMethodArgumentResolver {
-    private UserRepository userRepository;
+    private MemberRepository userRepository;
 
-    public UserArgumentResolver(UserRepository userRepository) {
+    public UserArgumentResolver(MemberRepository userRepository) {
         this.userRepository = userRepository;
     }
 
     @Override
     public boolean supportsParameter(MethodParameter methodParameter) {
-        return methodParameter.getParameterType().equals(User.class);
+        return methodParameter.getParameterType().equals(Member.class);
     }
 
     @Override
@@ -36,17 +36,17 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
                                   NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
         HttpSession session = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes())
                 .getRequest().getSession();
-        User user = (User) session.getAttribute("user");
+        Member user = (Member) session.getAttribute("user");
         return getUser(user, session);
     }
 
-    private User getUser(User user, HttpSession session) {
+    private Member getUser(Member user, HttpSession session) {
         if(user == null) {
             try {
                 OAuth2AuthenticationToken authentication =
                         (OAuth2AuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
                 Map<String, Object> map = authentication.getPrincipal().getAttributes();
-                User convertUser = getModernUser(map);
+                Member convertUser = getModernUser(map);
                 user = userRepository.findByMail(convertUser.getMail());
                 if(user == null) { user = userRepository.save(convertUser); }
                 session.setAttribute("user", user);
@@ -57,8 +57,8 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
         return user;
     }
 
-    private User getModernUser(Map<String, Object> map) {
-        return User.builder()
+    private Member getModernUser(Map<String, Object> map) {
+        return Member.builder()
                 .nickName(String.valueOf(map.get("name")))
                 .mail(String.valueOf(map.get("email")))
                 .principal(String.valueOf(map.get("id")))
