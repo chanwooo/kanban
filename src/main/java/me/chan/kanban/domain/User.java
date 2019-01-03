@@ -5,10 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ValueGenerationType;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @NoArgsConstructor
@@ -36,6 +33,8 @@ public class User {
 
     @Getter
     private LocalDateTime updatedDate;
+
+
 
     @Builder
     public User(String mail, String nickName, String password, String principal, LocalDateTime createdDate, LocalDateTime updatedDate) {
