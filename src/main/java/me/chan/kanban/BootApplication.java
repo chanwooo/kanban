@@ -20,14 +20,19 @@ public class BootApplication {
     public CommandLineRunner runner(MemberRepository memberRepository) throws Exception {
         return (args) -> {
             Member user = memberRepository.save(Member.builder()
-            .mail("chanwookim@me.com")
-            .password("cksdn1")
-            .nickName("찬우")
-            .createdDate(LocalDateTime.now())
-            .build()
+                    .mail("chanwookim@me.com")
+                    .password("cksdn1")
+                    .nickName("찬우")
+                    .createdDate(LocalDateTime.now())
+                    .build()
             );
         };
     }
+
+
+
+
+
 
 }
 

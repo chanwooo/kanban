@@ -5,36 +5,43 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, target-densitydpi=device-dpi">
     <link rel="stylesheet" th:href="@{/css/base.css}"/>
+    <link rel="stylesheet" th:href="@{/css/login.css}"/>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
 
-    <title>Kanban</title>
+    <title>Kanban - Login</title>
 </head>
+
 <body>
-<h1>Kanban</h1>
+    <div class="login-container">
+
+        <h1>로그인 해주세요</h1>
+        <br>
+        <form th:action="@{/login}" method="post">
+            <input type="text" name="user" placeholder="Username">
+            <input type="password" name="pass" placeholder="Password">
+            <input type="submit" name="login" class="login login-submit" value="Login">
+        </form>
+
+        <div class="login-help">
+            <a href="#">회원 가입</a> / <a href="#">계정을 잊으셨나요?</a>
+        </div>
+        <hr>
+        <div>
+        <button class="login login-submit" data-social="google">Login with Google</button>
+        </div>
+
+    </div>
 
 
-<h2>로그인</h2>
-
-<form>
-    이메일 : <input/><br/>
-    비밀번호 :<input/>
-    <button>로그인</button>
-</form>
 
 
-<button class="social_login" data-social="google">Login with Google</button>
-<br/>
-계정을 잊으셨나요?
-
-<br/>회원가입
-<script th:src="@{/js/jquery.min.js}"></script>
-<script>
-    $('.social_login').click(function () {
-        var socialType = $(this).data('social');
-        location.href = "/oauth2/authorization/"+socialType;
-    });
-</script>
-
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script>
+        $('.social_login').click(function () {
+            var socialType = $(this).data('social');
+            location.href = "/oauth2/authorization/"+socialType;
+        });
+    </script>
 
 </body>
 </html>

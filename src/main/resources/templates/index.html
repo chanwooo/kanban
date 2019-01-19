@@ -1,20 +1,17 @@
 <!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, target-densitydpi=device-dpi">
+<html lang="ko" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/main}">
+<!-- Main Content -->
+<div class="container" layout:fragment="content">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <h1>Kanban</h1>
 
-    <title>Kanban</title>
-</head>
-<body>
-<h1>Kanban</h1>
+            <br/>
 
-<a href="/login">로그인</a>
+            <h3>칸반보드를 만들어보는 프로젝트입니다.</h3>
 
-<br/>
-칸반보드를 만들어보는 프로젝트입니다!
+        </div>
+    </div>
+</div>
 
-
-</body>
 </html>

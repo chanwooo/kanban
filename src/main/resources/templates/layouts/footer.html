@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, target-densitydpi=device-dpi">
+    <link rel="stylesheet" th:href="@{/css/base.css}"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+
+    <title>Kanban</title>
+</head>
+<body>
+<h1>Kanban</h1>
+
+
+<h2>로그인</h2>
+
+<form>
+    이메일 : <input/><br/>
+    비밀번호 :<input/>
+    <button>로그인</button>
+</form>
+
+
+<button class="social_login" data-social="google">Login with Google</button>
+<br/>
+계정을 잊으셨나요?
+
+<br/>회원가입
+<script th:src="@{/js/jquery.min.js}"></script>
+<script>
+    $('.social_login').click(function () {
+        var socialType = $(this).data('social');
+        location.href = "/oauth2/authorization/"+socialType;
+    });
+</script>
+
+
+</body>
+</html>
