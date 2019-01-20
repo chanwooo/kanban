@@ -23,13 +23,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
                 .authorizeRequests()
-                .antMatchers("/", "/oauth2/**", "/login/**",
+                .antMatchers("/", "/oauth2/**", "/login", "/register",
                         "/css/**", "/images/**", "/js/**", "/console/**")
                 .permitAll()
                 .anyRequest().authenticated()
             .and()
-
                 .oauth2Login()
+                .loginPage("/login")
                 .defaultSuccessUrl("/loginSuccess")
                 .failureUrl("/loginFailure")
             .and()

@@ -1,5 +1,5 @@
 .login-container {
-    position: absolute;
+  position: absolute;
   padding: 30px;
   max-width: 350px;
   width: 100% !important;
@@ -104,4 +104,40 @@
 .login-help{
   font-size: 12px;
   color: #aaa;
+}
+
+.social-submit {
+    /* border: 1px solid #3079ed; */
+    border: 0px;
+    color: #fff;
+    text-shadow: 0 1px rgba(0,0,0,0.1);
+    background-color: #4d90fe;
+    padding: 12px 0px;
+    font-size: 14px;
+    /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#4787ed)); */
+}
+
+
+.social-submit:hover {
+    /* border: 1px solid #2f5bb7; */
+    border: 0px;
+    text-shadow: 0 1px rgba(0,0,0,0.3);
+    background-color: #357ae8;
+    /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#357ae8)); */
+}
+
+
+.social-login button {
+    width: 100%;
+    display: block;
+    margin-bottom: 7px;
+    position: relative;
+}
+
+
+.login-container h4 {
+    text-align: center;
+    font-size: 1.1em;
+
+    color: #aaa;
 }

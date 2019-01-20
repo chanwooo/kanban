@@ -23,7 +23,8 @@ public class MainController {
     {
         return "index";
     }
-    @GetMapping("/boards")
+
+    @GetMapping("/board")
     public String boards(Model model, Member user)
     {
         model.addAttribute("user", user);

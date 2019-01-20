@@ -16,18 +16,25 @@
 
         <h1>로그인 해주세요</h1>
         <br>
-        <form th:action="@{/login}" method="post">
-            <input type="text" name="user" placeholder="Username">
-            <input type="password" name="pass" placeholder="Password">
-            <input type="submit" name="login" class="login login-submit" value="Login">
+        <form th:action="@{/login}" method="post" autocomplete="current-password">
+            <input type="text" name="user" placeholder="이메일" required>
+            <input type="password" name="pass" placeholder="비밀번호"  required>
+            <input type="submit" name="login" class="login-submit" value="로그인">
         </form>
 
-        <div class="login-help">
-            <a href="#">회원 가입</a> / <a href="#">계정을 잊으셨나요?</a>
+        <h4>또는</h4>
+        <div class="social-login">
+            <button class="social-submit" data-social="google">Google 계정으로 로그인</button>
+            <!--
+            <button class="social-submit" data-social="facebook">Facebook 계정으로 로그인</button>
+            <button class="social-submit" data-social="github">Github 계정으로 로그인</button>
+            <button class="social-submit" data-social="naver">Naver 계정으로 로그인</button>
+            <button class="social-submit" data-social="kakao">Kakao 계정으로 로그인</button>
+            -->
         </div>
-        <hr>
-        <div>
-        <button class="login login-submit" data-social="google">Login with Google</button>
+
+        <div class="login-help">
+            <a href="/register">회원 가입</a> / <a href="#" onclick="alert('관리자에게 문의하세요. \n chanwookim@me.com');">계정을 잊으셨나요?</a>
         </div>
 
     </div>
