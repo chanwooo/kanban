@@ -1,9 +1,17 @@
-spring:
-  security:
-    oauth2:
-      client:
-        registration:
-          google:
-            client-id: "357621892993-16vkfn88qnvidd0cu3hkstdin4u9a1o7.apps.googleusercontent.com"
-            client-secret: "K7-bBXkHqyJjGrByGh-3wemh"
+#spring:
+#  security:
+#    oauth2:
+#      client:
+#        registration:
+#          google:
+#            client-id: "357621892993-16vkfn88qnvidd0cu3hkstdin4u9a1o7.apps.googleusercontent.com"
+#            client-secret: "K7-bBXkHqyJjGrByGh-3wemh"
 
+
+security:
+  basic:
+    enabled: false
+
+spring:
+  jpa:
+    show-sql: true

@@ -4,6 +4,7 @@ import me.chan.kanban.domain.Member;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class LoginController {
@@ -12,10 +13,13 @@ public class LoginController {
     public String loginPage() {
         return "login";
     }
-    @PostMapping("/login")
-    public String login() {
-        return "login";
-    }
+
+//    @PostMapping("/login")
+//    public String login(Member member) {
+//        System.out.println("login");
+//        return "index";
+//    }
+
 
     @GetMapping("/register")
     public String registerPage() {
@@ -23,8 +27,9 @@ public class LoginController {
     }
 
     @PostMapping("/register")
-    public String register() {
-        return "register";
+    public String register(Member member) {
+        System.out.println("register");
+        return "redirect:/";
     }
 
     @GetMapping("/loginSuccess")
