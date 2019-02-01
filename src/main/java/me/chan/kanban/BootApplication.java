@@ -33,13 +33,13 @@ public class BootApplication {
                     .createdDate(LocalDateTime.now())
                     .build()
             );
-            System.out.println("---- command line runner log ----");
             //System.out.println(m.getName()+" "+m.getEmail());
             List<Member> list = memberRepository.findAll();
+            System.out.println("---- command line runner log ----");
             System.out.println("SIZE : "+list.size());
             for(int i=0; i<list.size(); i++) {
                 //System.out.println(list.get(i).getIdx()+"->"+list.get(i).getNickName());
-                System.out.println(list.get(i));
+                System.out.println(list.get(i).toStringDetail());
             }
 
             System.out.println("---------------------------------");

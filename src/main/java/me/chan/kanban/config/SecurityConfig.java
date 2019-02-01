@@ -92,7 +92,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
                 Member member = memberRepository.findByEmail(email);
                 if(member==null) throw new UsernameNotFoundException(email);
-                member.setUpdatedDateNow(LocalDateTime.now());
+                member.setUpdatedDateNow();
                 memberRepository.save(member); //마지막 로그인시간 기록
                 return member;
             }

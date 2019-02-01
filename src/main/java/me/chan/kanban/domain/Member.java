@@ -54,19 +54,26 @@ public class Member implements UserDetails {
         this.updatedDate = updatedDate;
     }
 
-    public void setUpdatedDateNow(LocalDateTime updatedDate) {
+    public void setUpdatedDateNow() {
         this.updatedDate = LocalDateTime.now();
     }
 
-    public void setCreatedDateNow(LocalDateTime createdDate) {
-        this.createdDate = LocalDateTime.now();
-    }
+//    public void setCreatedDateNow(LocalDateTime createdDate) {
+//        this.createdDate = LocalDateTime.now();
+//    }
 
     @Override
     public String toString() {
 
         return idx+" "+email+" "+nickName+" "+password+" "+principal+" "+createdDate+" "+updatedDate;
     }
+
+    public String toStringDetail() {
+
+        return "idx : "+idx+"\nEmail : "+email+"\nNickname : "+nickName+"\nPassword : "+password
+                +"\nPrincipal : "+principal+"\nCreate Date : "+createdDate+"\nUpdate Date : "+updatedDate;
+    }
+
 
 
     @Override
