@@ -30,7 +30,7 @@ public class BootApplicationTests {
                 .name("Board1")
                 .build();
 
-        board.addSection("Todo");
+    //    board.addSection("Todo");
 
         boardRepository.save(board);
 

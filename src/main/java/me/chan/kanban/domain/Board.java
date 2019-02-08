@@ -3,8 +3,7 @@ package me.chan.kanban.domain;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+
 
 @Entity
 @Builder
@@ -21,11 +20,11 @@ public class Board {
 
     private String name;
 
-    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, mappedBy = "board")
+/*    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, mappedBy = "board")
     private List<Section> sections = new ArrayList<>();
 
     public void addSection(String sectionName){
         sections.add(Section.builder().name(sectionName).build());
     }
-
+*/
 }

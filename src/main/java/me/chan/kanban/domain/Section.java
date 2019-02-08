@@ -21,7 +21,6 @@ public class Section {
 
     private String name;
 
-    private Board board;
 
 
 }

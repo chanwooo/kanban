@@ -1,25 +1,31 @@
 package me.chan.kanban.controller;
 
 import me.chan.kanban.domain.Member;
+import me.chan.kanban.repository.MemberRepository;
+import me.chan.kanban.service.MemberService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 public class LoginController {
+
+    @Autowired
+    MemberRepository memberRepository;
+
+    @Autowired
+    MemberService memberService;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     @GetMapping("/login")
     public String loginPage() {
         return "login";
     }
-
-//    @PostMapping("/login")
-//    public String login(Member member) {
-//        System.out.println("login");
-//        return "index";
-//    }
-
 
     @GetMapping("/register")
     public String registerPage() {
@@ -28,12 +34,12 @@ public class LoginController {
 
     @PostMapping("/register")
     public String register(Member member) {
-        System.out.println("register");
-        return "redirect:/";
-    }
+        //System.out.println(member.toStringDetail());
+        member.setPassword(passwordEncoder.encode(member.getPassword()));
+        memberRepository.save(member);
 
-    @GetMapping("/loginSuccess")
-    public String loginSuccess(Member user) {
-        return "redirect:/boards";
+        memberService.printAll();
+
+        return "redirect:/";
     }
 }

@@ -3,6 +3,7 @@ package me.chan.kanban.domain;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.ValueGenerationType;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -15,6 +16,7 @@ import java.util.Collection;
 
 @NoArgsConstructor
 @Entity
+
 public class Member implements UserDetails {
 
     private static final long serialVersionUID=1L;
@@ -26,11 +28,14 @@ public class Member implements UserDetails {
     private long idx;
 
     @Getter
+    @Setter
     private String email;
 
     @Getter
+    @Setter
     private String nickName;
 
+    @Setter
     private String password;
 
     @Getter
@@ -70,8 +75,8 @@ public class Member implements UserDetails {
 
     public String toStringDetail() {
 
-        return "idx : "+idx+"\nEmail : "+email+"\nNickname : "+nickName+"\nPassword : "+password
-                +"\nPrincipal : "+principal+"\nCreate Date : "+createdDate+"\nUpdate Date : "+updatedDate;
+        return "idx : "+idx+"\nemail : "+email+"\nnickName : "+nickName+"\npassword : "+password
+                +"\nprincipal : "+principal+"\ncreatedDate : "+createdDate+"\nupdatedDate : "+updatedDate;
     }
 
 
