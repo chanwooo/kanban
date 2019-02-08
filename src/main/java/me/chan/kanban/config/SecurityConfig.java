@@ -69,8 +69,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .usernameParameter("email")
 //                .passwordParameter("password")
 //                .loginProcessingUrl("/login")
-//                .defaultSuccessUrl("/")
-//                .successForwardUrl("/")
+                .defaultSuccessUrl("/")
+//                .successForwardUrl("/") //login 성공후 405에러  why?
 
             .and()
                 .logout()

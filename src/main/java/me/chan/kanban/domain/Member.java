@@ -29,6 +29,7 @@ public class Member implements UserDetails {
 
     @Getter
     @Setter
+    @Column(unique = true)
     private String email;
 
     @Getter

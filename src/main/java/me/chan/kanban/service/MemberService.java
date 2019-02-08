@@ -4,6 +4,7 @@ import me.chan.kanban.domain.Member;
 import me.chan.kanban.repository.MemberRepository;
 import me.chan.kanban.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,6 +14,10 @@ import java.util.List;
 public class MemberService {
     @Autowired
     private MemberRepository memberRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
 
     @Transactional
     public void printAll(){
@@ -26,6 +31,13 @@ public class MemberService {
         }
         System.out.println("---------------------------------");
     }
+
+    @Transactional
+    public void save(Member m){
+        m.setPassword(passwordEncoder.encode(m.getPassword()));
+        memberRepository.save(m);
+    }
+
 
 
 }

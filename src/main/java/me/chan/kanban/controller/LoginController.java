@@ -14,13 +14,8 @@ import java.util.List;
 public class LoginController {
 
     @Autowired
-    MemberRepository memberRepository;
-
-    @Autowired
     MemberService memberService;
 
-    @Autowired
-    PasswordEncoder passwordEncoder;
 
     @GetMapping("/login")
     public String loginPage() {
@@ -32,12 +27,12 @@ public class LoginController {
         return "register";
     }
 
+
+    //email이 unique이기 때문에 중복된 email로 회원가입시 적절한 예외처리 필요 현재는 에러 발생.
     @PostMapping("/register")
     public String register(Member member) {
         //System.out.println(member.toStringDetail());
-        member.setPassword(passwordEncoder.encode(member.getPassword()));
-        memberRepository.save(member);
-
+        memberService.save(member);
         memberService.printAll();
 
         return "redirect:/";
