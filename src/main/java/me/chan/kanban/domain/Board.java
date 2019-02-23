@@ -20,6 +20,9 @@ public class Board {
 
     private String name;
 
+    @ManyToOne
+    private Member owner;
+
 /*    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, mappedBy = "board")
     private List<Section> sections = new ArrayList<>();
 

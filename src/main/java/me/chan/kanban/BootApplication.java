@@ -1,7 +1,10 @@
 package me.chan.kanban;
 
+import me.chan.kanban.domain.Board;
 import me.chan.kanban.domain.Member;
+import me.chan.kanban.repository.BoardRepository;
 import me.chan.kanban.repository.MemberRepository;
+import me.chan.kanban.service.BoardService;
 import me.chan.kanban.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -19,6 +22,12 @@ public class BootApplication {
     @Autowired
     MemberService memberService;
 
+    @Autowired
+    BoardService boardService;
+
+    @Autowired
+    BoardRepository boardRepository;
+
     public static void main(String[] args) { SpringApplication.run(BootApplication.class, args); }
 
 
@@ -33,8 +42,19 @@ public class BootApplication {
                     .createdDate(LocalDateTime.now())
                     .build()
             );
+
+            Member member = memberRepository.findByEmail("chanwookim@me.com");
+            System.out.println("member : "+member);
+
+            boardRepository.save(Board.builder()
+            .name("todo")
+            .owner(member)
+            .build()
+            );
+
             //System.out.println(m.getName()+" "+m.getEmail());
             memberService.printAll();
+            boardService.printAll();
 
         };
     }
